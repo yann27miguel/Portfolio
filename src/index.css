@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "@fontsource-variable/familjen-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Day and night palettes. Variable names follow shadcn/ui, so components pasted
+  in from shadcn, Magic UI, Aceternity, Origin UI or 21st.dev inherit them.
+
+  DAY                         NIGHT
+  Lilac mist   #F3F1FA        Deep indigo  #100E24   background
+  Ink          #1D1A3B        Starlight    #ECE9FF   text
+  Violet       #5B3DF5        Lavender     #A594FF   primary / links
+  Sun          #FF7A30        Moon         #6EE7D2   the "time of day" highlight
+  Haze         #DCD7EE        Dusk line    #2E2A55   borders
+*/
+:root {
+  --background: #f3f1fa;
+  --foreground: #1d1a3b;
+  --card: #ffffff;
+  --card-foreground: #1d1a3b;
+  --popover: #ffffff;
+  --popover-foreground: #1d1a3b;
+  --primary: #5b3df5;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e4f6;
+  --secondary-foreground: #1d1a3b;
+  --muted: #e8e4f6;
+  --muted-foreground: #5f5a80;
+  --accent: #ff7a30;
+  --accent-foreground: #1d1a3b;
+  --destructive: #c4321c;
+  --border: #dcd7ee;
+  --input: #cfc9e6;
+  --ring: #5b3df5;
+  --radius: 0.875rem;
+  --spot: rgba(91, 61, 245, 0.14);
+  --term-bg: #1d1a3b;
+  --term-fg: #ece9ff;
+  --term-dim: #a49fc8;
+  --term-hi: #ff9a5c;
+}
+
+.dark {
+  --background: #100e24;
+  --foreground: #ece9ff;
+  --card: #1a1736;
+  --card-foreground: #ece9ff;
+  --popover: #1a1736;
+  --popover-foreground: #ece9ff;
+  --primary: #a594ff;
+  --primary-foreground: #100e24;
+  --secondary: #242048;
+  --secondary-foreground: #ece9ff;
+  --muted: #242048;
+  --muted-foreground: #a49fc8;
+  --accent: #6ee7d2;
+  --accent-foreground: #100e24;
+  --destructive: #ff8a7a;
+  --border: #2e2a55;
+  --input: #3a356a;
+  --ring: #a594ff;
+  --spot: rgba(110, 231, 210, 0.13);
+  --term-bg: #0a0919;
+  --term-fg: #ece9ff;
+  --term-dim: #8c87b3;
+  --term-hi: #6ee7d2;
+}
+
+@theme inline {
+  --font-sans: "Familjen Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-term-bg: var(--term-bg);
+  --color-term-fg: var(--term-fg);
+  --color-term-dim: var(--term-dim);
+  --color-term-hi: var(--term-hi);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    line-height: 1.55;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Magic UI — Animated Theme Toggler: the new theme grows out of the button as a circle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Portrait backdrops: a low sun by day, lavender moonlight by night.
+   The cut-out photo sits on top, so the background follows the theme. */
+:root {
+  --portrait-bg: radial-gradient(120% 90% at 50% 18%, #ffd3a8 0%, #ffa25e 42%, #ff7a30 100%);
+  --portrait-ring: rgba(255, 122, 48, 0.35);
+}
+.dark {
+  --portrait-bg: radial-gradient(120% 90% at 50% 18%, #e4ddff 0%, #b9aaff 38%, #7b68e8 100%);
+  --portrait-ring: rgba(110, 231, 210, 0.45);
+}

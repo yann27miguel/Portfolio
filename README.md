@@ -44,4 +44,8 @@ The contact form opens the visitor's email app. To receive messages directly, re
 
 ## Deploy
 
-`vite.config.ts` uses `base: './'`, so `dist/` works on Vercel, Netlify or GitHub Pages without changes.
+Live at **https://yann27miguel.github.io/Portfolio/**.
+
+Every push to `main` rebuilds and republishes the site automatically (`.github/workflows/deploy.yml`). You can follow each run in the repo's **Actions** tab.
+
+`vite.config.ts` uses `base: './'`, so `dist/` also works on Vercel or Netlify without changes.
